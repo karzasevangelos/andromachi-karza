@@ -162,6 +162,7 @@
       <a href="#schetika">Σχετικά</a>
       <a href="#gia-poion">Για ποιον</a>
       <a href="#ypiresies">Υπηρεσίες</a>
+      <a href="#paixnidia">Παιχνίδια</a>
       <a href="#poreia">Πώς ξεκινάμε</a>
       <a href="#epikoinonia">Επικοινωνία</a>
     </nav>
@@ -183,6 +184,7 @@
     <li><a href="#empeiria">Εμπειρία</a></li>
     <li><a href="#gia-poion">Για ποιον</a></li>
     <li><a href="#ypiresies">Υπηρεσίες</a></li>
+    <li><a href="#paixnidia">Παιχνίδια</a></li>
     <li><a href="#poreia">Πώς ξεκινάμε</a></li>
     <li><a href="#erotiseis">Ερωτήσεις</a></li>
     <li><a href="#epikoinonia">Επικοινωνία</a></li>
@@ -625,6 +627,140 @@
     </div>
   </section>
 
+  <section class="sec games-sec" id="paixnidia" aria-labelledby="h-games">
+    <div class="wrap">
+      <div class="sec__head rv">
+        <p class="kicker">ΜΙΚΡΑ ΠΑΙΧΝΙΔΙΑ</p>
+        <h2 id="h-games">Παίξτε, προσαρμόστε, αναγνωρίστε</h2>
+        <p class="sec__intro">Τέσσερα σύντομα παιχνίδια για να εξερευνήσετε συναισθήματα,
+        σκέψεις, επιλογές και μνήμη — χωρίς λογαριασμό και χωρίς ερωτηματολόγιο.</p>
+      </div>
+
+      <div class="games-note" role="note">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
+          <rect x="5" y="10" width="14" height="10" rx="3"></rect>
+          <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
+        </svg>
+        <p><strong>Εκπαιδευτικά, χωρίς διάγνωση.</strong> Δεν ζητούνται ονόματα,
+        ιατρικά στοιχεία ή προσωπικές ιστορίες. Τα ίδια τα παιχνίδια δεν στέλνουν
+        ή αποθηκεύουν αποτελέσματα και δεν αποτελούν ιατρική συμβουλή ή
+        ψυχολογική αξιολόγηση. Μπορείτε να σταματήσετε ανά πάσα στιγμή.</p>
+      </div>
+      <noscript><p class="games-noscript">Για να παίξετε, ενεργοποιήστε την JavaScript.</p></noscript>
+
+      <div class="games-grid">
+        <article class="game-card rv">
+          <div class="game-card__top">
+            <span class="game-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" focusable="false">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M8.5 14.5c.8 1.2 2 1.8 3.5 1.8s2.7-.6 3.5-1.8"></path>
+                <path d="M8.5 9.5h.01M15.5 9.5h.01"></path>
+              </svg>
+            </span>
+            <span class="game-card__time">2 λεπτά</span>
+          </div>
+          <h3 id="game-emotion-title">Συναισθήματα στα μπαλόνια</h3>
+          <p>Διαλέξτε το μπαλόνι με το συναίσθημα που ζητά ο γύρος και σκάστε το.</p>
+          <button class="btn btn--sm game-card__toggle" type="button" data-game-open="emotion" aria-controls="game-emotion" aria-expanded="false" hidden>Ξεκίνα</button>
+          <div class="game-panel" id="game-emotion" data-game-panel="emotion" role="region" aria-labelledby="game-emotion-title" hidden>
+            <div class="game-panel__bar">
+              <p data-emotion-progress role="status" aria-live="polite"></p>
+              <button class="game-reset" type="button" data-emotion-reset>Επαναφορά</button>
+            </div>
+            <div class="emotion-stage" data-emotion-stage role="group" aria-label="Παιχνίδι συναισθημάτων στα μπαλόνια"></div>
+            <p class="game-feedback" data-emotion-message role="status" aria-live="polite"></p>
+            <div class="game-actions">
+              <button class="btn btn--sm" type="button" data-emotion-start>Ξεκίνα παιχνίδι</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card rv">
+          <div class="game-card__top">
+            <span class="game-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
+                <path d="M9 18h6a5 5 0 0 0 1.4-9.8A6 6 0 0 0 4.8 9.4 4.2 4.2 0 0 0 6 17.7"></path>
+                <path d="M9 21h.01M6.5 18h.01M12 18h.01"></path>
+              </svg>
+            </span>
+            <span class="game-card__time">3 λεπτά</span>
+          </div>
+          <h3 id="game-thought-title">Φυσαλίδες σκέψεων</h3>
+          <p>Σκάστε τη φυσαλίδα που έχει κολλήσει σε μια απόλυτη σκέψη και αφήστε χώρο για εναλλακτικές.</p>
+          <button class="btn btn--sm game-card__toggle" type="button" data-game-open="thought" aria-controls="game-thought" aria-expanded="false" hidden>Ξεκίνα</button>
+          <div class="game-panel" id="game-thought" data-game-panel="thought" role="region" aria-labelledby="game-thought-title" hidden>
+            <div class="game-panel__bar">
+              <p data-thought-progress role="status" aria-live="polite"></p>
+              <button class="game-reset" type="button" data-thought-reset>Επαναφορά</button>
+            </div>
+            <div class="thought-stage" data-thought-stage role="group" aria-label="Παιχνίδι φυσαλίδων σκέψεων"></div>
+            <p class="game-feedback" data-thought-message role="status" aria-live="polite"></p>
+            <div class="game-actions">
+              <button class="btn btn--sm" type="button" data-thought-start>Ξεκίνα παιχνίδι</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card rv">
+          <div class="game-card__top">
+            <span class="game-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
+                <circle cx="12" cy="12" r="8"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path>
+              </svg>
+            </span>
+            <span class="game-card__time">2 λεπτά</span>
+          </div>
+          <h3 id="game-focus-title">Κήπος επίκεντρης</h3>
+          <p>Πατήστε το φωτεινό φύλλο και αφήστε τα εμπόδια στην ηρεμία.</p>
+          <button class="btn btn--sm game-card__toggle" type="button" data-game-open="focus" aria-controls="game-focus" aria-expanded="false" hidden>Ξεκίνα</button>
+          <div class="game-panel" id="game-focus" data-game-panel="focus" role="region" aria-labelledby="game-focus-title" hidden>
+            <div class="game-panel__bar">
+              <p data-focus-progress role="status" aria-live="polite"></p>
+              <button class="game-reset" type="button" data-focus-reset>Επαναφορά</button>
+            </div>
+            <div class="focus-arena" data-focus-stage role="group" aria-label="Παιχνίδι κήπου επίκεντρης"></div>
+            <p class="game-feedback" data-focus-message role="status" aria-live="polite"></p>
+            <div class="game-actions">
+              <button class="btn btn--sm" type="button" data-focus-start>Ξεκίνα παιχνίδι</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="game-card rv">
+          <div class="game-card__top">
+            <span class="game-card__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
+                <rect x="3" y="3" width="7" height="7" rx="2"></rect>
+                <rect x="14" y="3" width="7" height="7" rx="2"></rect>
+                <rect x="3" y="14" width="7" height="7" rx="2"></rect>
+                <rect x="14" y="14" width="7" height="7" rx="2"></rect>
+              </svg>
+            </span>
+            <span class="game-card__time">3 λεπτά</span>
+          </div>
+          <h3 id="game-memory-title">Διαδρομή μνήμης</h3>
+          <p>Ακολουθήστε τα φωτεινά σημεία μιας σειράς και επαναλάβετέ τη χωρίς χρονική πίεση.</p>
+          <button class="btn btn--sm game-card__toggle" type="button" data-game-open="memory" aria-controls="game-memory" aria-expanded="false" hidden>Ξεκίνα</button>
+          <div class="game-panel" id="game-memory" data-game-panel="memory" role="region" aria-labelledby="game-memory-title" hidden>
+            <div class="game-panel__bar">
+              <p data-memory-progress role="status" aria-live="polite"></p>
+              <button class="game-reset" type="button" data-memory-reset>Επαναφορά</button>
+            </div>
+            <div class="memory-map" data-memory-stage role="group" aria-label="Διαδρομή μνήμης με έξι σημεία"></div>
+            <p class="game-feedback" data-memory-message role="status" aria-live="polite"></p>
+            <div class="game-actions">
+              <button class="btn btn--sm" type="button" data-memory-start>Ξεκίνα σειρά</button>
+              <button class="game-reset" type="button" data-memory-replay hidden>Δες τη σειρά ξανά</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= THE PATH ================= -->
   <section class="sec" id="poreia" aria-labelledby="h-path">
     <div class="wrap">
@@ -893,6 +1029,7 @@
         <a href="#empeiria">Εμπειρία</a>
         <a href="#gia-poion">Για ποιον</a>
         <a href="#ypiresies">Υπηρεσίες</a>
+        <a href="#paixnidia">Παιχνίδια</a>
         <a href="#erotiseis">Ερωτήσεις</a>
         <a href="#aporrito">Απόρρητο</a>
         <a href="en/" hreflang="en" lang="en">English</a>
