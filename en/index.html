@@ -139,7 +139,6 @@
       <a href="#about">About</a>
       <a href="#for-whom">Who it's for</a>
       <a href="#services">Services</a>
-      <a href="#games">Games</a>
       <a href="#path">How we begin</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -161,7 +160,6 @@
     <li><a href="#experience">Experience</a></li>
     <li><a href="#for-whom">Who it's for</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#games">Games</a></li>
     <li><a href="#path">How we begin</a></li>
     <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -590,139 +588,6 @@
     </div>
   </section>
 
-  <section class="sec games-sec" id="games" aria-labelledby="h-games">
-    <div class="wrap">
-      <div class="sec__head rv">
-        <p class="kicker">MINI GAMES</p>
-        <h2 id="h-games">Play, adjust, notice</h2>
-        <p class="sec__intro">Four short games to explore emotions, thoughts, choices
-        and memory — with no account and no questionnaire.</p>
-      </div>
-
-      <div class="games-note" role="note">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false">
-          <rect x="5" y="10" width="14" height="10" rx="3"></rect>
-          <path d="M8 10V7a4 4 0 0 1 8 0v3"></path>
-        </svg>
-        <p><strong>Educational, not diagnostic.</strong> The games do not ask for
-        names, health details or personal stories. They do not send or store results,
-        and they are not medical advice or psychological assessment. Stop at any time.</p>
-      </div>
-      <noscript><p class="games-noscript">Enable JavaScript to play.</p></noscript>
-
-      <div class="games-grid">
-        <article class="game-card rv">
-          <div class="game-card__top">
-            <span class="game-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" focusable="false">
-                <circle cx="12" cy="12" r="9"></circle>
-                <path d="M8.5 14.5c.8 1.2 2 1.8 3.5 1.8s2.7-.6 3.5-1.8"></path>
-                <path d="M8.5 9.5h.01M15.5 9.5h.01"></path>
-              </svg>
-            </span>
-            <span class="game-card__time">2 min</span>
-          </div>
-          <h3 id="game-emotion-title">Emotion Balloons</h3>
-          <p>Find the balloon with the requested emotion and pop it.</p>
-          <button class="btn btn--sm game-card__toggle" type="button" data-game-open="emotion" aria-controls="game-emotion" aria-expanded="false" hidden>Start</button>
-          <div class="game-panel" id="game-emotion" data-game-panel="emotion" role="region" aria-labelledby="game-emotion-title" hidden>
-            <div class="game-panel__bar">
-              <p data-emotion-progress role="status" aria-live="polite"></p>
-              <button class="game-reset" type="button" data-emotion-reset>Reset</button>
-            </div>
-            <div class="emotion-stage" data-emotion-stage role="group" aria-label="Emotion balloon game"></div>
-            <p class="game-feedback" data-emotion-message role="status" aria-live="polite"></p>
-            <div class="game-actions">
-              <button class="btn btn--sm" type="button" data-emotion-start>Start game</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="game-card rv">
-          <div class="game-card__top">
-            <span class="game-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" focusable="false">
-                <path d="M9 18h6a5 5 0 0 0 1.4-9.8A6 6 0 0 0 4.8 9.4 4.2 4.2 0 0 0 6 17.7"></path>
-                <path d="M9 21h.01M6.5 18h.01M12 18h.01"></path>
-              </svg>
-            </span>
-            <span class="game-card__time">3 min</span>
-          </div>
-          <h3 id="game-thought-title">Thought Bubbles</h3>
-          <p>Pop the bubble stuck on an absolute thought and make room for alternatives.</p>
-          <button class="btn btn--sm game-card__toggle" type="button" data-game-open="thought" aria-controls="game-thought" aria-expanded="false" hidden>Start</button>
-          <div class="game-panel" id="game-thought" data-game-panel="thought" role="region" aria-labelledby="game-thought-title" hidden>
-            <div class="game-panel__bar">
-              <p data-thought-progress role="status" aria-live="polite"></p>
-              <button class="game-reset" type="button" data-thought-reset>Reset</button>
-            </div>
-            <div class="thought-stage" data-thought-stage role="group" aria-label="Thought bubble game"></div>
-            <p class="game-feedback" data-thought-message role="status" aria-live="polite"></p>
-            <div class="game-actions">
-              <button class="btn btn--sm" type="button" data-thought-start>Start game</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="game-card rv">
-          <div class="game-card__top">
-            <span class="game-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
-                <circle cx="12" cy="12" r="8"></circle>
-                <circle cx="12" cy="12" r="3"></circle>
-                <path d="M12 2v4M12 18v4M2 12h4M18 12h4"></path>
-              </svg>
-            </span>
-            <span class="game-card__time">2 min</span>
-          </div>
-          <h3 id="game-focus-title">Focus Garden</h3>
-          <p>Tap the glowing leaf and leave every obstacle undisturbed.</p>
-          <button class="btn btn--sm game-card__toggle" type="button" data-game-open="focus" aria-controls="game-focus" aria-expanded="false" hidden>Start</button>
-          <div class="game-panel" id="game-focus" data-game-panel="focus" role="region" aria-labelledby="game-focus-title" hidden>
-            <div class="game-panel__bar">
-              <p data-focus-progress role="status" aria-live="polite"></p>
-              <button class="game-reset" type="button" data-focus-reset>Reset</button>
-            </div>
-            <div class="focus-arena" data-focus-stage role="group" aria-label="Focus garden game"></div>
-            <p class="game-feedback" data-focus-message role="status" aria-live="polite"></p>
-            <div class="game-actions">
-              <button class="btn btn--sm" type="button" data-focus-start>Start game</button>
-            </div>
-          </div>
-        </article>
-
-        <article class="game-card rv">
-          <div class="game-card__top">
-            <span class="game-card__icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" focusable="false">
-                <rect x="3" y="3" width="7" height="7" rx="2"></rect>
-                <rect x="14" y="3" width="7" height="7" rx="2"></rect>
-                <rect x="3" y="14" width="7" height="7" rx="2"></rect>
-                <rect x="14" y="14" width="7" height="7" rx="2"></rect>
-              </svg>
-            </span>
-            <span class="game-card__time">3 min</span>
-          </div>
-          <h3 id="game-memory-title">Memory Path</h3>
-          <p>Follow the glowing points in a sequence and repeat it without time pressure.</p>
-          <button class="btn btn--sm game-card__toggle" type="button" data-game-open="memory" aria-controls="game-memory" aria-expanded="false" hidden>Start</button>
-          <div class="game-panel" id="game-memory" data-game-panel="memory" role="region" aria-labelledby="game-memory-title" hidden>
-            <div class="game-panel__bar">
-              <p data-memory-progress role="status" aria-live="polite"></p>
-              <button class="game-reset" type="button" data-memory-reset>Reset</button>
-            </div>
-            <div class="memory-map" data-memory-stage role="group" aria-label="Memory path with six points"></div>
-            <p class="game-feedback" data-memory-message role="status" aria-live="polite"></p>
-            <div class="game-actions">
-              <button class="btn btn--sm" type="button" data-memory-start>Start sequence</button>
-              <button class="game-reset" type="button" data-memory-replay hidden>Show sequence again</button>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <!-- ================= THE PATH ================= -->
   <section class="sec" id="path" aria-labelledby="h-path">
     <div class="wrap">
@@ -985,7 +850,6 @@
         <a href="#experience">Experience</a>
         <a href="#for-whom">Who it's for</a>
         <a href="#services">Services</a>
-        <a href="#games">Games</a>
         <a href="#faq">FAQ</a>
         <a href="#privacy">Privacy</a>
         <a href="../" hreflang="el" lang="el">Ελληνικά</a>
