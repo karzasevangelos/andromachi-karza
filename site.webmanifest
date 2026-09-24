@@ -1,0 +1,12 @@
+{
+  "name": "Ανδρομάχη Κάρζα — Ψυχολόγος",
+  "short_name": "Α. Κάρζα",
+  "start_url": "./",
+  "display": "minimal-ui",
+  "background_color": "#F7F4EE",
+  "theme_color": "#F7F4EE",
+  "icons": [
+    { "src": "assets/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
