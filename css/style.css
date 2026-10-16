@@ -1,7 +1,10 @@
 @charset "UTF-8";
 /* ==========================================================================
-   ΑΝΔΡΟΜΑΧΗ ΚΑΡΖΑ — Ψυχολόγος, Θεσσαλονίκη
-   Single-page site. Warm paper, soft organic shapes, lively accents.
+   ΑΝΔΡΟΜΑΧΗ ΚΑΡΖΑ — Ψυχολόγος
+   Single-page site. "The quiet room": rosy paper, one illustrated corner,
+   and Commissioner in two voices — flared, high-contrast headings (the FLAR
+   and VOLM axes, which recall Greek inscriptional letters) over a plain,
+   generous text face. Cards only where something is a real unit.
 
    TWO RULES THAT GOVERN THIS FILE
    1. COLOUR: teal is text only on --paper / --card (4.52 / 4.96 : 1).
@@ -15,7 +18,8 @@
 
 /* ==========================================================================
    1. FONTS — self-hosted (no Google CDN: LG München 2022). Greek subset
-   verified from the binary: Α α ά ώ ς Ω all present.
+   verified from the binary: Α α ά ώ ς Ω all present. Variable axes:
+   wght 100–900, FLAR 0–100 (flared terminals), VOLM 0–100 (contrast).
    ========================================================================== */
 
 @font-face {
@@ -57,32 +61,36 @@
   color-scheme: light;
 
   /* grounds */
-  --paper: #F7F4EE;
+  --paper: #FAF6F3;   /* rosy paper — lighter than the old #F7F4EE, so every
+                         contrast pair below only improved */
   --card:  #FFFFFF;
   --wash:  #EDF3EE;   /* alternating section band — 6.00:1 with --ink-2 */
   --mint:  #DEEDE4;
   --peach: #F9DFE6;
   --sand:  #F6EBDB;
   --sky:   #DEE9F0;
+  --rule:  rgba(32, 48, 44, .14);   /* hairlines between list items */
 
   /* ink */
-  --ink:   #20302C;   /* 12.58:1 on paper */
-  --ink-2: #4E5F5A;   /* 6.15:1 on paper, ≥5.4 on every wash */
+  --ink:   #20302C;   /* 12.85:1 on paper */
+  --ink-2: #4E5F5A;   /* 6.29:1 on paper, ≥5.38 on every wash (peach lowest) */
 
   /* accents — teal is the only accent allowed as text (paper/card only) */
-  --teal:      #2E7D63;   /* 4.52:1 on paper, 4.96:1 on card */
+  --teal:      #2E7D63;   /* 4.62:1 on paper, 4.96:1 on card */
   --teal-deep: #1E5B46;   /* hover; 7.95:1 under white */
   --coral:     #D98AA3;   /* decorative only */
   --amber:     #E7A9BA;   /* decorative only */
 
   /* type — root stays 100%, clamp() on rem */
   --ff: 'Commissioner', 'Commissioner Fallback', system-ui, sans-serif;
-  --t-hero: clamp(2.35rem, 1.5rem + 3.3vw, 3.55rem);
-  --t-h2:   clamp(1.75rem, 1.35rem + 1.8vw, 2.5rem);
-  --t-h3:   1.3125rem;
+  --display: 'FLAR' 100, 'VOLM' 80;   /* the heading voice */
+  --t-hero: clamp(2.6rem, 1.6rem + 3.9vw, 4.4rem);
+  --t-h2:   clamp(2rem, 1.45rem + 2.2vw, 3.1rem);
+  --t-h3:   1.375rem;
   --t-lede: clamp(1.125rem, 1.05rem + 0.4vw, 1.3125rem);
-  --t-body: 1.0625rem;
-  --t-small: .875rem;
+  --t-body: 1.125rem;
+  --t-text: 1rem;      /* body copy inside lists, cards and answers */
+  --t-small: .875rem;  /* interface chrome: nav, chips, hints */
   --t-tiny: .8125rem;
 
   /* space */
@@ -99,8 +107,8 @@
   --r-md: 18px;
   --r-pill: 999px;
   --ease: cubic-bezier(.22, 1, .36, 1);
-  --shadow: 0 10px 30px -12px rgba(32, 48, 44, .18);
-  --shadow-lift: 0 22px 44px -16px rgba(32, 48, 44, .26);
+  --shadow: 0 1px 2px rgba(32, 48, 44, .05), 0 10px 28px -16px rgba(32, 48, 44, .16);
+  --shadow-lift: 0 2px 4px rgba(32, 48, 44, .05), 0 24px 48px -20px rgba(32, 48, 44, .24);
 }
 
 @media (prefers-contrast: more) {
@@ -140,10 +148,27 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 img, svg, picture { display: block; max-width: 100%; }
 img { height: auto; }
 
-h1, h2, h3 { text-wrap: balance; line-height: 1.15; font-weight: 650; }
+h1, h2, h3 {
+  text-wrap: balance;
+  line-height: 1.12;
+  font-weight: 540;
+  font-variation-settings: var(--display);
+  letter-spacing: 0;
+}
+h3 { font-weight: 580; line-height: 1.25; }
 p { text-wrap: pretty; }
 
 ::selection { background: var(--teal); color: #fff; }
+
+/* in-text links: ink with a rose underline (never the browser's blue) */
+a {
+  color: var(--ink);
+  text-decoration-color: var(--coral);
+  text-decoration-thickness: 2px;
+  text-underline-offset: .22em;
+  transition: color .2s var(--ease), text-decoration-color .2s var(--ease);
+}
+a:hover { color: var(--teal-deep); text-decoration-color: currentColor; }
 
 :focus-visible {
   outline: 3px solid var(--ink);
@@ -186,7 +211,7 @@ p { text-wrap: pretty; }
   transition: background .35s var(--ease), box-shadow .35s var(--ease);
 }
 .hdr.is-scrolled {
-  background: rgba(247, 244, 238, .82);
+  background: rgba(250, 246, 243, .84);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   box-shadow: 0 1px 0 rgba(32, 48, 44, .08), 0 8px 24px -18px rgba(32, 48, 44, .25);
@@ -204,8 +229,9 @@ p { text-wrap: pretty; }
 @media (max-width: 480px) { .hdr__in { gap: var(--s3); } }
 
 .hdr__name {
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  font-variation-settings: var(--display);
   color: var(--ink);
   text-decoration: none;
   margin-right: auto;
@@ -420,7 +446,7 @@ html.js .rv-kids.in > :nth-child(12) { --d: 660ms; }
   left: 0; top: 0;
   border-radius: 50%;
   background: radial-gradient(circle,
-    rgba(46, 125, 99, .16), rgba(237, 180, 88, .12) 42%, rgba(247, 244, 238, 0) 68%);
+    rgba(46, 125, 99, .14), rgba(217, 138, 163, .12) 42%, rgba(250, 246, 243, 0) 68%);
   pointer-events: none;
   z-index: 0;
   opacity: 0;
@@ -459,10 +485,9 @@ html.js .rv-kids.in > :nth-child(12) { --d: 660ms; }
 
 .hero__title {
   font-size: var(--t-hero);
-  font-weight: 700;
+  font-weight: 500;
   line-height: 1.06;
   margin-top: var(--s5);
-  letter-spacing: -.01em;
 }
 
 /* line-mask reveal: each line rises out of an overflow-hidden strip */
@@ -573,7 +598,7 @@ html.js.loaded .hero__cta, html.js.loaded .hero__note {
    gradient for a real photograph later — the mask and motion stay. ---- */
 .hero__visual {
   position: relative;
-  width: min(24rem, 78vw);
+  width: min(27rem, 78vw);
   margin-inline: auto;
 }
 .hero__img {
@@ -704,56 +729,76 @@ html.js.loaded .hero__visual {
 .sec--wash { background: var(--mint); border-radius: var(--r-lg); }
 
 /* Alternating band — gives the page a rhythm instead of one flat ground.
-   RULE 1 still holds: --teal fails on the wash (4.45), so the kicker inside a
-   band steps down to --teal-deep (7.07). Mint tags would disappear into the
-   band, so their first variant reverts to white. */
+   RULE 1 still holds: --teal fails on the wash (4.45), so nothing teal is
+   ever text inside a band. Mint tags would disappear into the band, so their
+   first variant reverts to white. */
 .sec--alt { background: var(--wash); border-radius: var(--r-lg); }
-.sec--alt .kicker { color: var(--teal-deep); }
-.sec--alt .tags li:nth-child(4n+1) { background: var(--card); }
+.sec--alt .tags li:nth-child(3n+1) { background: var(--card); }
 
 .sec__head { max-width: 44rem; margin-bottom: var(--s6); }
-.kicker {
-  display: inline-flex;
-  align-items: center;
-  gap: .5rem;
-  font-size: var(--t-tiny);
-  font-weight: 700;
-  color: var(--teal);
-  margin-bottom: var(--s3);
-}
-.kicker::before {
+.sec h2 { font-size: var(--t-h2); }
+/* a short rose stroke under every section heading — the squiggle's echo */
+.sec h2::after {
   content: "";
-  width: 1.4rem; height: 3px;
+  display: block;
+  width: 2.75rem; height: 3px;
+  margin-top: var(--s4);
   border-radius: 2px;
   background: var(--coral);
 }
-.sec h2 { font-size: var(--t-h2); }
-.sec__intro { color: var(--ink-2); margin-top: var(--s4); max-width: var(--measure); }
+.sec__intro { color: var(--ink-2); margin-top: var(--s5); max-width: var(--measure); }
+.sec__intro + .sec__intro { margin-top: var(--s4); }
+
+/* Split: heading + intro on the left (it stays in view while the list
+   scrolls past), the content on the right. Wide screens only; phones keep
+   the single column in source order. */
+@media (min-width: 1000px) {
+  .split {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+  .split > .sec__head {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+    margin-bottom: 0;
+  }
+  .split > :not(.sec__head) { grid-column: 2; }
+}
 
 /* ==========================================================================
-   9. ABOUT — intro text + credential cards.
+   9. ABOUT — heading and credentials on the left, her own words on the right.
+   Source order stays heading → text → credentials for screen readers.
    ========================================================================== */
 
-.about { display: grid; gap: var(--s7); align-items: start; }
+.about { display: grid; gap: var(--s6); align-items: start; }
+.about__text { display: grid; gap: var(--s4); color: var(--ink-2); max-width: 40rem; }
+@media (min-width: 1000px) {
+  .about {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    grid-template-areas: "head text" "creds text";
+    grid-template-rows: auto 1fr;
+    column-gap: clamp(3rem, 6vw, 6rem);
+    row-gap: var(--s6);
+  }
+  .about > h2 { grid-area: head; }
+  .about__text { grid-area: text; }
+  .creds { grid-area: creds; }
+}
 
-.creds { display: grid; gap: var(--s4); margin-top: var(--s6); }
-@media (min-width: 640px) { .creds { grid-template-columns: 1fr 1fr; } }
-.cred {
-  background: var(--card);
-  border-radius: var(--r-md);
-  padding: var(--s5);
-  box-shadow: var(--shadow);
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
-}
-.cred:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+/* credentials: a quiet list, not a set of cards */
+.creds { display: grid; border-top: 1px solid var(--rule); }
+.cred { padding-block: var(--s4); border-bottom: 1px solid var(--rule); }
 .cred__k {
-  font-size: var(--t-tiny);
-  font-weight: 700;
-  letter-spacing: .04em;
+  font-size: var(--t-small);
+  font-weight: 650;
   color: var(--teal);
-  margin-bottom: var(--s2);
+  margin-bottom: .15rem;
 }
-.cred__v { font-size: var(--t-small); color: var(--ink); line-height: 1.6; }
+.cred__v { font-size: var(--t-text); color: var(--ink); line-height: 1.55; }
 
 /* ==========================================================================
    10. TAGS — pastel pills, pop in with stagger, wiggle on hover.
@@ -763,58 +808,51 @@ html.js.loaded .hero__visual {
 .tags li {
   background: var(--card);
   border-radius: var(--r-pill);
-  padding: .55rem 1.1rem;
-  font-size: var(--t-small);
+  padding: .6rem 1.2rem;
+  font-size: var(--t-text);
   font-weight: 500;
-  box-shadow: var(--shadow);
   transition: transform .25s var(--ease), background .25s var(--ease);
   cursor: default;
 }
-.tags li:nth-child(4n+1) { background: var(--mint); }
-.tags li:nth-child(4n+2) { background: var(--peach); }
-.tags li:nth-child(4n+3) { background: var(--sky); }
-.tags li:nth-child(4n+4) { background: var(--sand); }
-.tags li:hover { transform: translateY(-3px) rotate(-1.2deg) scale(1.04); }
+.tags li:nth-child(3n+1) { background: var(--mint); }
+.tags li:nth-child(3n+2) { background: var(--peach); }
+.tags li:nth-child(3n+3) { background: var(--card); box-shadow: inset 0 0 0 1px var(--rule); }
+.tags li:hover { transform: translateY(-2px); }
+.tags + .sec__intro { margin-top: var(--s6); }
 
 /* ==========================================================================
    11. SERVICE CARDS
    ========================================================================== */
 
-.cards { display: grid; gap: var(--s5); }
+/* Six services, read like a table of contents: a rule above each, the shape
+   as a small marker beside the title. No tinted boxes — on the wash band the
+   text carries itself (--ink-2 is 6.00:1 there). */
+.cards { display: grid; column-gap: clamp(2rem, 4vw, 3.5rem); row-gap: var(--s6); }
 @media (min-width: 700px) { .cards { grid-template-columns: 1fr 1fr; } }
-@media (min-width: 1040px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1100px) { .cards { grid-template-columns: repeat(3, 1fr); } }
 
 .cardp {
   position: relative;
-  border-radius: var(--r-lg);
-  padding: var(--s6);
-  background: var(--card);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--s3);
+  align-content: start;
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule);
 }
-.cardp:hover { transform: translateY(-6px) rotate(-.4deg); box-shadow: var(--shadow-lift); }
-.cardp:nth-child(5n+1) { background: var(--mint); }
-.cardp:nth-child(5n+2) { background: var(--peach); }
-.cardp:nth-child(5n+3) { background: var(--sky); }
-.cardp:nth-child(5n+4) { background: var(--sand); }
-.cardp:nth-child(5n+5) { background: var(--card); }
-
 .cardp__shape {
-  width: 3rem; height: 3rem;
+  width: .95rem; height: .95rem;
+  margin-top: .42rem;
   border-radius: 62% 38% 55% 45% / 55% 48% 52% 45%;
-  margin-bottom: var(--s4);
+  background: var(--teal);
   transition: transform .4s var(--ease);
 }
-.cardp:hover .cardp__shape { transform: rotate(25deg) scale(1.12); }
-.cardp:nth-child(5n+1) .cardp__shape { background: var(--teal); }
-.cardp:nth-child(5n+2) .cardp__shape { background: var(--coral); }
-.cardp:nth-child(5n+3) .cardp__shape { background: var(--amber); }
-.cardp:nth-child(5n+4) .cardp__shape { background: var(--teal); }
-.cardp:nth-child(5n+5) .cardp__shape { background: var(--coral); }
+.cardp:hover .cardp__shape { transform: rotate(35deg) scale(1.2); }
+.cardp:nth-child(3n+2) .cardp__shape { background: var(--coral); }
+.cardp:nth-child(3n+3) .cardp__shape { background: var(--amber); }
 
-.cardp h3 { font-size: var(--t-h3); margin-bottom: var(--s2); }
-.cardp p { font-size: var(--t-small); color: var(--ink-2); }
+.cardp h3 { font-size: var(--t-h3); margin-bottom: var(--s3); }
+.cardp p { grid-column: 2; font-size: var(--t-text); color: var(--ink-2); line-height: 1.65; }
 .cardp a { color: var(--ink); font-weight: 600; }
 
 /* ==========================================================================
@@ -838,27 +876,13 @@ html.js.loaded .hero__visual {
   border-radius: var(--r-lg);
   padding: var(--s6) var(--s5);
   box-shadow: var(--shadow);
-  overflow: hidden;
+  border-top: 4px solid var(--accent);
   transition: transform .35s var(--ease), box-shadow .35s var(--ease);
 }
 .path:nth-child(4n+2) { --accent: var(--coral); }
 .path:nth-child(4n+3) { --accent: var(--amber); }
 .path:nth-child(4n+4) { --accent: var(--teal-deep); }
-.path:hover { transform: translateY(-6px); box-shadow: var(--shadow-lift); }
-
-.path::before {
-  content: "";
-  position: absolute;
-  top: -3.5rem; right: -3.5rem;
-  width: 9rem; height: 9rem;
-  border-radius: 62% 38% 55% 45% / 55% 48% 52% 45%;
-  background: var(--accent);
-  opacity: .12;
-  transition: transform .5s var(--ease);
-  pointer-events: none;
-}
-.path:hover::before { transform: rotate(28deg) scale(1.14); }
-.path > * { position: relative; z-index: 1; }
+.path:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
 
 .path__icon {
   width: 3rem; height: 3rem;
@@ -872,8 +896,8 @@ html.js.loaded .hero__visual {
 .path:hover .path__icon { transform: rotate(-12deg) scale(1.09); }
 .path__icon svg { width: 1.55rem; height: 1.55rem; }
 
-.path h3 { font-size: var(--t-h3); }
-.path__list { display: grid; gap: .4rem; font-size: var(--t-small); color: var(--ink-2); }
+.path h3 { font-size: 1.625rem; margin-top: var(--s2); }
+.path__list { display: grid; gap: .5rem; font-size: var(--t-text); color: var(--ink-2); }
 .path__list li { position: relative; padding-left: 1.1rem; line-height: 1.55; }
 .path__list li::before {
   content: "";
@@ -885,54 +909,56 @@ html.js.loaded .hero__visual {
 }
 
 /* the practical strip — what an online session actually needs */
-.kit-wrap { display: grid; gap: var(--s4); margin-top: var(--s6); }
-.kit__label { font-weight: 650; color: var(--ink); }
+/* the practical strip — what an online session actually needs. One blush
+   panel, so the checklist reads as a single thing to prepare. */
+.kit-wrap {
+  display: grid;
+  gap: var(--s5);
+  margin-top: var(--s7);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--peach);
+  border-radius: var(--r-lg);
+}
+.kit__label { font-size: var(--t-h3); font-weight: 580; font-variation-settings: var(--display); color: var(--ink); }
 .kit-wrap .kit { margin-top: 0; }
 @media (min-width: 1000px) {
-  .kit-wrap { grid-template-columns: 12rem 1fr; align-items: start; }
-  .kit__label { margin-top: var(--s4); }
+  .kit-wrap { grid-template-columns: 11rem 1fr; align-items: start; }
 }
-.kit { display: grid; gap: var(--s4); margin-top: var(--s6); }
+.kit { display: grid; gap: var(--s5); }
 @media (min-width: 560px)  { .kit { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1000px) { .kit { grid-template-columns: repeat(4, 1fr); } }
 .kit li {
-  background: var(--card);
-  border-radius: var(--r-md);
-  padding: var(--s4) var(--s5);
-  box-shadow: var(--shadow);
-  font-size: var(--t-small);
-  color: var(--ink-2);
+  font-size: var(--t-text);
+  color: var(--ink-2);   /* 5.38:1 on --peach */
   line-height: 1.55;
 }
-.kit strong { display: block; color: var(--ink); font-weight: 650; margin-bottom: .1rem; }
+.kit strong { display: block; color: var(--ink); font-weight: 650; margin-bottom: .2rem; }
 
 /* ==========================================================================
    12. APPROACH ROWS
    ========================================================================== */
 
-.rows { display: grid; gap: var(--s4); max-width: 44rem; }
+.rows { display: grid; max-width: 44rem; border-top: 1px solid var(--rule); }
 .row {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--s4);
   align-items: start;
-  background: var(--card);
-  border-radius: var(--r-md);
-  padding: var(--s5);
-  box-shadow: var(--shadow);
-  transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+  padding-block: var(--s5);
+  border-bottom: 1px solid var(--rule);
 }
-.row:hover { transform: translateX(6px); box-shadow: var(--shadow-lift); }
 .row__dot {
   width: .9rem; height: .9rem;
-  margin-top: .45rem;
+  margin-top: .5rem;
   border-radius: 60% 40% 55% 45% / 55% 50% 50% 45%;
+  transition: transform .4s var(--ease);
 }
+.row:hover .row__dot { transform: rotate(35deg) scale(1.2); }
 .row:nth-child(3n+1) .row__dot { background: var(--teal); }
 .row:nth-child(3n+2) .row__dot { background: var(--coral); }
 .row:nth-child(3n+3) .row__dot { background: var(--amber); }
-.row h3 { font-size: var(--t-h3); margin-bottom: var(--s1); }
-.row p { font-size: var(--t-small); color: var(--ink-2); }
+.row h3 { font-size: var(--t-h3); margin-bottom: var(--s2); }
+.row p { font-size: var(--t-text); color: var(--ink-2); line-height: 1.65; }
 
 /* ==========================================================================
    13. STEPS — the path. A line draws across as it enters; numbered dots pop.
@@ -974,8 +1000,9 @@ html.js .steps.in::before { transform: scaleY(1); transition: transform 1.1s var
   display: grid; place-items: center;
   background: var(--teal);
   color: #fff;
-  font-weight: 700;
+  font-weight: 600;
   font-size: var(--t-small);
+  font-variation-settings: var(--display);
   border-radius: 50%;
   box-shadow: 0 0 0 6px var(--paper);
 }
@@ -984,21 +1011,16 @@ html.js .rv-kids.in > .step .step__n {
   transform: none; opacity: 1;
   transition: transform .6s var(--ease) calc(var(--d) + 250ms), opacity .4s var(--ease) calc(var(--d) + 250ms);
 }
-.step__h { font-size: 1.125rem; font-weight: 650; margin: .35rem 0 var(--s1); }
-@media (min-width: 860px) { .step__h { margin-top: var(--s4); } }
-.step__d { font-size: var(--t-small); color: var(--ink-2); }
+.step__h { font-size: var(--t-h3); margin: .35rem 0 var(--s2); }
+@media (min-width: 860px) { .step__h { margin-top: var(--s5); } }
+.step__d { font-size: var(--t-text); color: var(--ink-2); line-height: 1.6; }
 
 /* ==========================================================================
    14. FAQ
    ========================================================================== */
 
-.faq { max-width: 44rem; display: grid; gap: var(--s3); }
-.faq details {
-  background: var(--card);
-  border-radius: var(--r-md);
-  box-shadow: var(--shadow);
-  overflow: hidden;
-}
+.faq { max-width: 44rem; display: grid; border-top: 1px solid var(--rule); }
+.faq details { border-bottom: 1px solid var(--rule); }
 .faq summary {
   cursor: pointer;
   list-style: none;
@@ -1006,24 +1028,29 @@ html.js .rv-kids.in > .step .step__n {
   align-items: center;
   justify-content: space-between;
   gap: var(--s4);
-  min-height: 56px;
-  padding: var(--s4) var(--s5);
-  font-weight: 600;
+  min-height: 64px;
+  padding-block: var(--s4);
+  font-size: 1.1875rem;
+  font-weight: 560;
+  font-variation-settings: var(--display);
+  line-height: 1.35;
 }
 .faq summary::-webkit-details-marker { display: none; }
+/* the toggle: a white disc with a plus that turns into a cross */
 .faq summary::after {
   content: "";
   flex: none;
-  width: 14px; height: 14px;
+  width: 2.25rem; height: 2.25rem;
+  border-radius: 50%;
   background:
-    linear-gradient(var(--teal), var(--teal)) center/14px 2.5px no-repeat,
-    linear-gradient(var(--teal), var(--teal)) center/2.5px 14px no-repeat;
-  border-radius: 2px;
-  transition: transform .35s var(--ease);
+    linear-gradient(var(--teal-deep), var(--teal-deep)) center/13px 2px no-repeat,
+    linear-gradient(var(--teal-deep), var(--teal-deep)) center/2px 13px no-repeat,
+    var(--card);
+  transition: transform .35s var(--ease), background-color .25s var(--ease);
 }
 .faq details[open] summary::after { transform: rotate(135deg); }
-.faq summary:hover { color: var(--teal-deep); }
-.faq__a { padding: 0 var(--s5) var(--s5); color: var(--ink-2); font-size: var(--t-small); line-height: 1.7; }
+.faq summary:hover::after { background-color: var(--peach); }
+.faq__a { padding: 0 3.5rem var(--s5) 0; color: var(--ink-2); font-size: var(--t-text); line-height: 1.7; }
 .faq__a p + p { margin-top: var(--s3); }
 
 /* ==========================================================================
@@ -1036,8 +1063,9 @@ html.js .rv-kids.in > .step .step__n {
 .contact__facts { display: grid; gap: var(--s4); }
 .contact__facts a { min-height: 24px; display: inline-flex; align-items: center; }
 .tel-big {
-  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2rem);
-  font-weight: 700;
+  font-size: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
+  font-weight: 540;
+  font-variation-settings: var(--display);
   color: var(--ink);
   text-decoration: none;
   border-bottom: 3px solid var(--coral);
@@ -1081,7 +1109,7 @@ html.js .rv-kids.in > .step .step__n {
   width: 100%;
   transition: border-color .2s var(--ease), background .2s var(--ease);
 }
-.field input:hover, .field textarea:hover { background: #F1EDE4; }
+.field input:hover, .field textarea:hover { background: #F3EDE9; }
 .field input:focus, .field textarea:focus {
   outline: none;
   border-color: var(--teal);
@@ -1153,7 +1181,7 @@ html.js .rv-kids.in > .step .step__n {
   margin: 0 auto var(--s7);
   text-align: center;
 }
-.crisis__h { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: var(--s2); }
+.crisis__h { font-size: 1.25rem; font-weight: 560; color: #fff; margin-bottom: var(--s2); }
 .crisis p { font-size: var(--t-small); margin-bottom: var(--s4); }
 .crisis ul { display: flex; flex-wrap: wrap; gap: var(--s3) var(--s5); justify-content: center; font-size: var(--t-small); }
 .crisis a {
@@ -1163,7 +1191,7 @@ html.js .rv-kids.in > .step .step__n {
 }
 
 .ftr__grid { text-align: center; display: grid; gap: var(--s5); justify-items: center; }
-.ftr__name { font-weight: 700; color: #fff; font-size: 1.125rem; }
+.ftr__name { font-weight: 560; font-variation-settings: var(--display); color: #fff; font-size: 1.375rem; }
 .ftr a { color: #D8E2DC; min-height: 24px; display: inline-flex; align-items: center; }
 .ftr a:hover { color: #fff; }
 .ftr__links { display: flex; flex-wrap: wrap; gap: var(--s4) var(--s5); justify-content: center; font-size: var(--t-small); }
@@ -1209,7 +1237,6 @@ html.js .rv-kids.in > .step .step__n {
   .chip--b { left: -4%; }
 
   .path { padding: var(--s5) var(--s5) var(--s6); }
-  .cardp { padding: var(--s5); }
 }
 
 /* short landscape phones: a 94svh hero leaves no room for anything else */
@@ -1228,7 +1255,7 @@ html.js .rv-kids.in > .step .step__n {
     gap: var(--s3);
     padding: var(--s3) var(--gutter);
     padding-bottom: max(var(--s3), env(safe-area-inset-bottom));
-    background: rgba(247, 244, 238, .92);
+    background: rgba(250, 246, 243, .92);
     backdrop-filter: blur(14px);
     -webkit-backdrop-filter: blur(14px);
     box-shadow: 0 -1px 0 rgba(32, 48, 44, .1), 0 -10px 30px -20px rgba(32, 48, 44, .4);
@@ -1257,13 +1284,9 @@ html.js .rv-kids.in > .step .step__n {
 /* Touch devices keep :hover styles stuck after a tap — the card stays lifted
    until you tap elsewhere. Neutralise the lift where there is no real hover. */
 @media (hover: none) {
-  .cardp:hover, .path:hover, .cred:hover, .tags li:hover {
-    transform: none;
-    box-shadow: var(--shadow);
-  }
-  .row:hover { transform: none; box-shadow: var(--shadow); }
-  .btn:hover { transform: none; }
-  .path:hover::before, .path:hover .path__icon,
+  .path:hover { transform: none; box-shadow: var(--shadow); }
+  .tags li:hover, .btn:hover { transform: none; }
+  .path:hover .path__icon, .row:hover .row__dot,
   .cardp:hover .cardp__shape { transform: none; }
 }
 
@@ -1294,18 +1317,18 @@ html.js .rv-kids.in > .step .step__n {
   .sec { padding-block: var(--s6); break-inside: auto; }
 
   /* every ground becomes a hairline — backgrounds do not print */
-  .sec--alt, .sec--wash, .form-card, .cardp, .path, .row, .cred, .kit li,
-  .tags li, .faq details, .crisis {
+  .sec--alt, .sec--wash, .form-card, .path, .kit-wrap, .tags li, .crisis {
     background: transparent !important;
     box-shadow: none !important;
     border: 1px solid #999;
   }
   .sec--alt, .sec--wash { border: none; border-block: 1px solid #ccc; }
+  .split > .sec__head { position: static; }
   .cardp, .path, .row, .cred, .kit li, .faq details, .crisis {
     break-inside: avoid;
     page-break-inside: avoid;
   }
-  .path::before, .cardp__shape { display: none; }
+  .cardp__shape { display: none; }
   .path__icon { background: transparent !important; color: #000 !important; }
 
   /* the dark footer would print as a solid black slab */
@@ -1313,7 +1336,8 @@ html.js .rv-kids.in > .step .step__n {
   .ftr a, .crisis a, .crisis__h, .ftr__name, .ftr__legal { color: #000 !important; }
 
   h1, h2, h3 { break-after: avoid; page-break-after: avoid; }
-  .kicker, .cred__k { color: #000 !important; }
+  .cred__k { color: #000 !important; }
+  .sec h2::after { display: none; }
 
   /* a printed FAQ with every answer collapsed is a printed table of contents */
   .faq details > *:not(summary) { display: block !important; }

@@ -104,17 +104,25 @@ form `action` instead of the address.
   drop accents by orthographic rule — write caps by hand, accents removed);
   `letter-spacing: 0` on Greek text; Greek runs ~10–15% longer than English,
   so test layouts with the Greek strings.
-- **Fonts**: Commissioner (by a Greek designer, verified Greek subset).
-  If you ever swap fonts, check the replacement actually ships **greek**
-  (not just greek-ext): only 129 of ~1,900 Google Fonts do. Cormorant,
-  Playfair, Lora, Montserrat, Raleway do NOT.
+- **Fonts**: Commissioner (by a Greek designer, verified Greek subset), the
+  variable build with `wght`, `FLAR` and `VOLM` axes. Headings use the
+  `--display` voice (`FLAR 100, VOLM 80` — flared, inscriptional terminals);
+  body text stays plain. To re-download, request
+  `family=Commissioner:wght,FLAR,VOLM@100..900,0..100,0..100` and keep only
+  the greek + latin subsets. If you ever swap fonts, check the replacement
+  actually ships **greek** (not just greek-ext): only 129 of ~1,900 Google
+  Fonts do. Cormorant, Playfair, Lora, Montserrat, Raleway do NOT.
+- **Layout**: long sections use `.wrap.split` — heading + intro sticky on the
+  left, content on the right (≥1000px only). Cards are reserved for real
+  units (the four audiences, the form); lists use hairline `--rule`s. No
+  all-caps labels above headings — the heading carries the section.
 - **Motion**: every animation is gated behind `html.js`, added by JS only
   when `prefers-reduced-motion` is off. No JS / reduced motion → complete,
   still page. Keep it that way: never author `opacity: 0` outside `html.js`.
 - **The form must never fake success** — a success message renders only after
   the server confirms the send. The failure message always shows the phone.
 - Crisis numbers (1018, 10306, 116111, 112) stay in the footer of every page.
-- `.sec--alt` is the alternating band. Inside it the kicker steps down to
-  `--teal-deep` — plain `--teal` measures 4.45:1 on `--wash` and fails.
+- `.sec--alt` is the alternating band. Never put `--teal` text inside it —
+  it measures 4.45:1 on `--wash` and fails; use `--teal-deep` or `--ink`.
 - `.path` cards each own one accent through `--accent`; the amber card flips
   its glyph to `--ink` because white on amber is unreadable.
