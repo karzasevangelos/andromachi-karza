@@ -339,12 +339,6 @@
             </div>
           </dl>
         </div>
-
-        <div class="portrait-wrap rv">
-          <!-- Replace with a real photograph (keep width/height for CLS 0):
-               <img class="portrait" src="assets/portrait.jpg" width="640" height="800" alt="Η Ανδρομάχη Κάρζα"> -->
-          <div class="portrait" role="img" aria-label="Φωτογραφία της Ανδρομάχης Κάρζα">ΦΩΤΟΓΡΑΦΙΑ</div>
-        </div>
       </div>
     </div>
   </section>
@@ -759,7 +753,10 @@
             <a href="tel:112">112</a> ή το <a href="tel:1018">1018</a>.
           </p>
 
-          <form class="form" data-form data-tel="698 835 5485" action="/contact" method="post">
+          <!-- Delivered by FormSubmit (static hosting has no server). js/main.js
+               posts to its /ajax/ endpoint; without JS the browser posts here. -->
+          <form class="form" data-form data-tel="698 835 5485" action="https://formsubmit.co/andromachikarza@gmail.com" method="post">
+            <input type="hidden" name="_template" value="table">
             <div class="field">
               <label for="onoma">Όνομα (προαιρετικό)</label>
               <input id="onoma" name="onoma" type="text" autocomplete="name">
@@ -789,10 +786,8 @@
             <!-- Honeypot — never a substitute for the server-side checks. -->
             <div class="hp" aria-hidden="true">
               <label for="website">Μην συμπληρώσετε αυτό το πεδίο</label>
-              <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+              <input id="website" name="_honey" type="text" tabindex="-1" autocomplete="off">
             </div>
-
-            <div data-turnstile></div>
 
             <!-- Separate, unticked, and it NAMES the category — "I agree to
                  the privacy policy" does not satisfy Art. 9 explicit consent. -->
@@ -833,10 +828,9 @@
               <h3>Πού πηγαίνουν</h3>
               <p>Η φόρμα δεν αποθηκεύει τίποτα σε βάση του ιστότοπου· το μήνυμα
               παραδίδεται ως email στο επαγγελματικό γραμματοκιβώτιο, όπου και
-              τηρείται έως [12] μήνες. Εκτελούντες: Cloudflare (φιλοξενία και
-              προστασία φόρμας Turnstile, χωρίς cookies — EU–US DPF/SCCs),
-              Brevo (αποστολή email, Γαλλία), Google Ireland Ltd. (Gmail —
-              γραμματοκιβώτιο, EU–US DPF/SCCs).</p>
+              τηρείται έως [12] μήνες. Εκτελούντες: GitHub (φιλοξενία, ΗΠΑ —
+              EU–US DPF/SCCs), FormSubmit (προώθηση της φόρμας ως email, ΗΠΑ),
+              Google Ireland Ltd. (Gmail — γραμματοκιβώτιο, EU–US DPF/SCCs).</p>
               <h3>Τα δικαιώματά σας</h3>
               <p>Πρόσβαση, διόρθωση, διαγραφή, περιορισμός, φορητότητα,
               εναντίωση, ανάκληση συγκατάθεσης (άρθρα 15–21 ΓΚΠΔ) — γράψτε στο

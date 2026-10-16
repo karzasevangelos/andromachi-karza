@@ -10,9 +10,9 @@ en/index.html       English mirror
 css/style.css       the whole design system
 js/main.js          animations, nav, form (no dependencies)
 fonts/              Commissioner, self-hosted, greek+latin subsets
-assets/             favicon, og image, icons — replace photos here
-functions/contact.js  Cloudflare Pages Function: Turnstile → Brevo email
-_headers            security headers (CSP) + caching for Cloudflare Pages
+assets/             favicon, og image, icons
+_headers            security headers (CSP) + caching — used only if moved to Cloudflare Pages/Netlify
+.nojekyll           tells GitHub Pages to serve files as-is
 sitemap.xml robots.txt site.webmanifest
 ```
 
@@ -37,12 +37,11 @@ HTML files for `[` to find them all:
 | `[000000000]` | ΑΦΜ (required by Π.Δ. 131/2003 for regulated professions) |
 | `[09:00–20:00]` | the hours she actually answers the phone |
 | `[12]` μήνες | real retention period for enquiries |
-| `ΦΩΤΟΓΡΑΦΙΑ` / `PHOTOGRAPH` | a real portrait (`<img>` with explicit `width`/`height`) |
 
 Already filled in: name and titles (Ψυχολόγος Α.Π.Θ.; MEd Ειδικής Αγωγής και
 Εκπαίδευσης, Παν. Πατρών; MSc Εκπαιδευτικής Ψυχολογίας, Παν. Λευκωσίας), phone
-`+30 698 835 5485` (also `data-tel` on both forms and `TEL` in
-`functions/contact.js`), email `andromachikarza@gmail.com`, and the fact that
+`+30 698 835 5485` (also `data-tel` on both forms), email
+`andromachikarza@gmail.com` (also the form `action` on both pages), and the fact that
 the practice is **online only** — there is no address anywhere, and the
 JSON-LD deliberately carries no `PostalAddress`. If an office opens later, add
 the address to the contact block, the footer, the privacy notice and the
@@ -51,31 +50,39 @@ the address to the contact block, the footer, the privacy notice and the
 Also: the privacy text and the footer legal block are **templates — have a
 lawyer review them before launch**.
 
-## Deploy — Cloudflare Pages (free)
+## Deploy — GitHub Pages (free)
 
-1. Push this folder to a Git repo → Cloudflare Pages → "Connect to Git",
-   framework preset **None**, build command **none**, output dir `/`.
-2. Buy the .gr domain (Papaki is the usual registrar) and point its
-   nameservers at Cloudflare; add the domain under Pages → Custom domains.
-   Don't buy hosting from the registrar — Pages serves the site.
-3. Email on the domain: Cloudflare Email Routing forwards `info@…` to any
-   existing inbox for free.
+Settings → Pages → Source **Deploy from a branch**, branch `main`, folder
+`/ (root)`. No build step. A free GitHub account can only publish Pages from
+a **public** repo. All asset paths are relative, so the site works both at
+`https://<user>.github.io/andromachi-karza/` and on a custom domain.
 
-### Activate the contact form (until then the phone number is the CTA)
+### Custom domain
 
-The form **fails loudly** while unconfigured — it tells the visitor to call
-instead. It never pretends to send.
+1. Buy the domain at any registrar. Don't buy their hosting — Pages serves it.
+2. At the registrar's DNS: four `A` records on the apex (`@`) →
+   `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
+   `185.199.111.153`; and `www` `CNAME` → `<user>.github.io`.
+3. Settings → Pages → Custom domain → enter it (this commits a `CNAME` file),
+   wait for the DNS check, then tick **Enforce HTTPS**.
+4. Replace `https://www.andromachikarza.gr` everywhere (both HTML files,
+   `sitemap.xml`, `robots.txt`) with the real domain.
 
-1. **Turnstile** (free, no cookies): Cloudflare dashboard → Turnstile →
-   Add site. Put the **site key** in `js/main.js` (`TURNSTILE_SITE_KEY`).
-2. **Brevo** (EU email provider): create account → verify a sender →
-   SMTP & API → new API key.
-3. Pages → Settings → Environment variables:
-   - `TURNSTILE_SECRET_KEY` — Turnstile secret
-   - `BREVO_API_KEY`
-   - `CONTACT_TO` — her inbox
-   - `CONTACT_FROM` — the Brevo-verified sender
-4. Submit a real test through the deployed form and confirm the mail arrives.
+Don't add the `CNAME` file before the DNS works — Pages would redirect the
+github.io address to a domain that doesn't resolve yet.
+
+### Contact form — FormSubmit
+
+The form posts to `https://formsubmit.co/andromachikarza@gmail.com` (no
+account, no server). `js/main.js` sends it to the `/ajax/` endpoint so the
+visitor stays on the page; without JS the browser posts directly.
+
+**One-time activation:** the first submission does NOT deliver — FormSubmit
+emails `andromachikarza@gmail.com` an "Activate Form" link instead. Click it,
+then submit a second test and confirm it arrives. Until activated the form
+shows the failure message with the phone number — it never fakes success.
+After activation FormSubmit offers a random-string alias you can put in the
+form `action` instead of the address.
 
 ### After launch
 

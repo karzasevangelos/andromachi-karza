@@ -10,12 +10,6 @@
 (function () {
   'use strict';
 
-  /* Set this after creating a Turnstile widget in the Cloudflare dashboard.
-     While it is empty no widget is injected and no external script loads.
-     The Pages Function refuses to send until BOTH this and the server secret
-     exist, so a misconfigured deploy fails LOUDLY instead of eating leads. */
-  var TURNSTILE_SITE_KEY = '';
-
   var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
   var root = document.documentElement;
   var motionOK = !mq.matches;
@@ -178,30 +172,37 @@
     });
   }
 
-  /* ------------------------------------------------------------- turnstile */
-  function attachTurnstile() {
-    var slot = document.querySelector('[data-turnstile]');
-    if (!slot || !TURNSTILE_SITE_KEY) return;
-    slot.className = 'cf-turnstile';
-    slot.setAttribute('data-sitekey', TURNSTILE_SITE_KEY);
-    var s = document.createElement('script');
-    s.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js';
-    s.async = true;
-    s.defer = true;
-    document.head.appendChild(s);
-  }
-
   /* -------------------------------------------------------------- the form
      There is NO simulated success state anywhere in this function. A success
-     message renders if and only if the server confirmed the send. Anything
+     message renders if and only if FormSubmit confirmed the send. Anything
      else surfaces the failure AND the phone number — a silently discarded
-     enquiry is the worst outcome this site can produce. */
+     enquiry is the worst outcome this site can produce.
+
+     The form's `action` is FormSubmit's plain endpoint (the no-JS path); here
+     we post the same enquiry to its /ajax/ twin so the visitor never leaves
+     the page. A not-yet-activated address answers success:"false". */
   function attachForm() {
     var form = document.querySelector('[data-form]');
     if (!form) return;
     var msg = form.querySelector('[data-msg]');
     var btn = form.querySelector('button[type="submit"]');
     var tel = form.getAttribute('data-tel') || '';
+    var endpoint = form.action.replace('//formsubmit.co/', '//formsubmit.co/ajax/');
+
+    /* The email goes to her, so its labels are in her language whichever
+       page the visitor used. */
+    var mail = {
+      subject: 'Νέο μήνυμα επικοινωνίας',
+      name: 'Όνομα',
+      phone: 'Τηλέφωνο',
+      email: 'Διεύθυνση email',   // not "email": FormSubmit treats that name specially
+      message: 'Μήνυμα',
+      consent: 'Συγκατάθεση (άρθρο 9 παρ. 2α ΓΚΠΔ)',
+      consentYes: 'ΝΑΙ — μέσω του πλαισίου επιλογής της φόρμας',
+      page: 'Σελίδα',
+      empty: '—'
+    };
+
     var strings = {
       el: {
         contact: 'Συμπληρώστε τηλέφωνο ή email, για να μπορέσω να απαντήσω.',
@@ -244,21 +245,44 @@
         return;
       }
 
+      var name = (fd.get('onoma') || '').toString().trim();
+      var payload = {
+        _subject: mail.subject + (name ? ' — ' + name : ''),
+        _template: 'table',
+        _captcha: 'false',
+        _honey: (fd.get('_honey') || '').toString()
+      };
+      payload[mail.name] = name || mail.empty;
+      payload[mail.phone] = phone || mail.empty;
+      payload[mail.email] = email || mail.empty;
+      payload[mail.message] = (fd.get('mynima') || '').toString().trim() || mail.empty;
+      payload[mail.consent] = mail.consentYes;
+      payload[mail.page] = location.href;
+      if (email) payload._replyto = email;
+
       btn.disabled = true;
       say(t.sending, 'ok');
 
-      fetch(form.action, { method: 'POST', body: fd })
+      fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
         .then(function (r) {
           return r.json().catch(function () { return {}; }).then(function (j) {
             return { ok: r.ok, body: j };
           });
         })
         .then(function (res) {
-          if (res.ok && res.body && res.body.sent === true) {
+          // FormSubmit sends success as the string "true"; accept a boolean too.
+          if (res.ok && res.body && String(res.body.success) === 'true') {
             form.reset();
             say(t.sent, 'ok');
           } else {
-            say(t.err + (res.body && res.body.message ? res.body.message + ' ' : '') + t.fail, 'err');
+            // Its message is English and meant for the site owner (e.g. "needs
+            // Activation") — log it, show the visitor the localized failure.
+            if (res.body && res.body.message) console.warn('FormSubmit:', res.body.message);
+            say(t.err + t.fail, 'err');
           }
           btn.disabled = false;
         })
@@ -272,7 +296,6 @@
   /* ------------------------------------------------------------------ boot */
   function init() {
     attachNav();
-    attachTurnstile();
     attachForm();
     attachHeader();
     attachActiveNav();

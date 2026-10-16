@@ -731,37 +731,10 @@ html.js.loaded .hero__visual {
 .sec__intro { color: var(--ink-2); margin-top: var(--s4); max-width: var(--measure); }
 
 /* ==========================================================================
-   9. ABOUT — portrait in an organic frame + credential cards.
+   9. ABOUT — intro text + credential cards.
    ========================================================================== */
 
 .about { display: grid; gap: var(--s7); align-items: start; }
-@media (min-width: 860px) { .about { grid-template-columns: minmax(0, 1fr) 20rem; } }
-
-.portrait-wrap { position: relative; width: min(20rem, 70vw); margin-inline: auto; }
-.portrait {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  border-radius: 58% 42% 52% 48% / 50% 46% 54% 50%;
-  background: linear-gradient(150deg, var(--mint), var(--sky));
-  border: none;
-  display: grid;
-  place-items: center;
-  color: var(--ink-2);
-  font-size: var(--t-tiny);
-  font-weight: 600;
-  text-align: center;
-  box-shadow: var(--shadow);
-}
-.portrait-wrap::before {
-  content: "";
-  position: absolute;
-  inset: -7%;
-  border-radius: 58% 42% 52% 48% / 50% 46% 54% 50%;
-  border: 2.5px dashed var(--amber);
-  transform: rotate(8deg);
-  pointer-events: none;
-}
 
 .creds { display: grid; gap: var(--s4); margin-top: var(--s6); }
 @media (min-width: 640px) { .creds { grid-template-columns: 1fr 1fr; } }
@@ -1314,7 +1287,7 @@ html.js .rv-kids.in > .step .step__n {
 
   /* interface, decoration and anything that cannot work on paper */
   .hdr, .navpanel, .skip, .ticker, .hero__blobs, .hero__glow, .blob,
-  .chip, .menu-btn, .lang, .hero__visual, .form, .warn, [data-turnstile],
+  .chip, .menu-btn, .lang, .hero__visual, .form, .warn,
   .hero__cta .btn--ghost { display: none !important; }
 
   .hero { min-height: 0; padding-block: 0 var(--s5); }
