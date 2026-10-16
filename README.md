@@ -33,7 +33,7 @@ HTML files for `[` to find them all:
 | Placeholder | Replace with |
 |---|---|
 | `https://www.andromachikarza.gr` | the real domain (also in `sitemap.xml`, `robots.txt`) |
-| `[00000]` | licence number (Άδεια Ασκήσεως Επαγγέλματος) — footer + About card + both pages |
+| `[00000]` | licence number (Άδεια Ασκήσεως Επαγγέλματος) — footer legal block, both pages |
 | `[000000000]` | ΑΦΜ (required by Π.Δ. 131/2003 for regulated professions) |
 | `[09:00–20:00]` | the hours she actually answers the phone |
 | `[12]` μήνες | real retention period for enquiries |
