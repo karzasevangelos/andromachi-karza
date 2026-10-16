@@ -61,7 +61,7 @@
   --card:  #FFFFFF;
   --wash:  #EDF3EE;   /* alternating section band — 6.00:1 with --ink-2 */
   --mint:  #DEEDE4;
-  --peach: #FBE5D6;
+  --peach: #F9DFE6;
   --sand:  #F6EBDB;
   --sky:   #DEE9F0;
 
@@ -72,8 +72,8 @@
   /* accents — teal is the only accent allowed as text (paper/card only) */
   --teal:      #2E7D63;   /* 4.52:1 on paper, 4.96:1 on card */
   --teal-deep: #1E5B46;   /* hover; 7.95:1 under white */
-  --coral:     #E8825F;   /* decorative only */
-  --amber:     #EDB458;   /* decorative only */
+  --coral:     #D98AA3;   /* decorative only */
+  --amber:     #E7A9BA;   /* decorative only */
 
   /* type — root stays 100%, clamp() on rem */
   --ff: 'Commissioner', 'Commissioner Fallback', system-ui, sans-serif;
@@ -334,8 +334,8 @@ p { text-wrap: pretty; }
   will-change: transform;
 }
 .blob--mint  { background: radial-gradient(circle at 30% 30%, #CDE7D8, rgba(205, 231, 216, 0)); }
-.blob--peach { background: radial-gradient(circle at 60% 40%, #FAD9C0, rgba(250, 217, 192, 0)); }
-.blob--amber { background: radial-gradient(circle at 40% 40%, #F6DCA6, rgba(246, 220, 166, 0)); }
+.blob--peach { background: radial-gradient(circle at 60% 40%, #F6C9D8, rgba(246, 201, 216, 0)); }
+.blob--amber { background: radial-gradient(circle at 40% 40%, #F3CBD6, rgba(243, 203, 214, 0)); }
 .blob--sky   { background: radial-gradient(circle at 50% 50%, #CFE2EE, rgba(207, 226, 238, 0)); }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -501,6 +501,7 @@ html.js .rotor ul { will-change: transform; }
 .rotor li { height: 1.18em; line-height: 1.18; }
 @media (prefers-reduced-motion: no-preference) {
   html.js .rotor ul { animation: rotor 11s var(--ease) 2.4s infinite; }
+  html.js .rotor--3 ul { animation: rotor-3 9s var(--ease) 2.4s infinite; }
 }
 @keyframes rotor {
   0%, 18%   { transform: translateY(0); }
@@ -508,6 +509,13 @@ html.js .rotor ul { will-change: transform; }
   50%, 68%  { transform: translateY(-2.36em); }
   75%, 93%  { transform: translateY(-3.54em); }
   100%      { transform: translateY(-4.72em); }  /* 5th item = 1st: seamless */
+}
+/* Greek hero: 3 words + repeat of the 1st for a seamless loop */
+@keyframes rotor-3 {
+  0%, 27%   { transform: translateY(0); }
+  33%, 60%  { transform: translateY(-1.18em); }
+  66%, 93%  { transform: translateY(-2.36em); }
+  100%      { transform: translateY(-3.54em); }  /* 4th item = 1st: seamless */
 }
 
 .squig {
@@ -574,8 +582,8 @@ html.js.loaded .hero__cta, html.js.loaded .hero__note {
   border-radius: 58% 42% 52% 48% / 50% 46% 54% 50%;
   background:
     radial-gradient(85% 70% at 22% 20%, #CDE7D8 0%, rgba(205, 231, 216, 0) 60%),
-    radial-gradient(80% 75% at 85% 30%, #F6DCA6 0%, rgba(246, 220, 166, 0) 55%),
-    radial-gradient(90% 80% at 60% 90%, #FAD9C0 0%, rgba(250, 217, 192, 0) 60%),
+    radial-gradient(80% 75% at 85% 30%, #F3CBD6 0%, rgba(243, 203, 214, 0) 55%),
+    radial-gradient(90% 80% at 60% 90%, #F6C9D8 0%, rgba(246, 201, 216, 0) 60%),
     linear-gradient(160deg, #DEEDE4, #DEE9F0);
   box-shadow: var(--shadow-lift);
   overflow: hidden;
@@ -904,6 +912,13 @@ html.js.loaded .hero__visual {
 }
 
 /* the practical strip — what an online session actually needs */
+.kit-wrap { display: grid; gap: var(--s4); margin-top: var(--s6); }
+.kit__label { font-weight: 650; color: var(--ink); }
+.kit-wrap .kit { margin-top: 0; }
+@media (min-width: 1000px) {
+  .kit-wrap { grid-template-columns: 12rem 1fr; align-items: start; }
+  .kit__label { margin-top: var(--s4); }
+}
 .kit { display: grid; gap: var(--s4); margin-top: var(--s6); }
 @media (min-width: 560px)  { .kit { grid-template-columns: 1fr 1fr; } }
 @media (min-width: 1000px) { .kit { grid-template-columns: repeat(4, 1fr); } }
