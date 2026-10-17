@@ -91,7 +91,19 @@ form `action` instead of the address.
 - **Google Business Profile** as an individual practitioner, category
   Ψυχολόγος. Keep the NAP string (name, address, phone) byte-identical with
   the footer — accent/abbreviation drift (`Λ.` vs `Λεωφόρος`) splits listings.
-- Search Console: submit `sitemap.xml`.
+- Search Console: add a **Domain** property for `andromachikarza.com`
+  (verify through Cloudflare), submit `sitemap.xml`, and request indexing of
+  `/` and `/en/`. Bing Webmaster Tools can import the property from Google.
+- **IndexNow** (Bing, Yandex, Seznam, Naver — and DuckDuckGo/Yahoo/Ecosia via
+  Bing): the key file `ba8d31c7664c8a3900ce33f3797be55e.txt` in the root
+  proves ownership. Don't delete it. After content changes, ping:
+  `curl -X POST https://api.indexnow.org/indexnow -H 'content-type: application/json'
+  -d '{"host":"andromachikarza.com","key":"ba8d31c7664c8a3900ce33f3797be55e","urlList":["https://andromachikarza.com/","https://andromachikarza.com/en/"]}'`
+- Name searches: the JSON-LD `WebSite`/`Person` nodes carry both spellings
+  (Ανδρομάχη Κάρζα / Andromachi Karza). When she has public profiles
+  (LinkedIn, Facebook, Instagram, directories), add their URLs to the
+  `Person` node as `"sameAs": [...]` in both HTML files, and link each
+  profile back to the site.
 - Analytics, if wanted: **Cloudflare Web Analytics only** (cookieless — no
   banner needed). GA4 would require a prior-consent banner in Greece.
 - No blog of AI-generated posts — this is YMYL health content; Google's
