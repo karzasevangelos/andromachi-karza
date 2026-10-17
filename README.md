@@ -1,4 +1,4 @@
-# Ανδρομάχη Κάρζα — Ψυχολόγος · andromachikarza.gr
+# Ανδρομάχη Κάρζα — Ψυχολόγος · andromachikarza.com
 
 Single-page bilingual website (Greek default at `/`, English mirror at `/en/`).
 Plain HTML/CSS/JS — no build step, no framework, no cookies. Open `index.html`
@@ -32,7 +32,6 @@ HTML files for `[` to find them all:
 
 | Placeholder | Replace with |
 |---|---|
-| `https://www.andromachikarza.gr` | the real domain (also in `sitemap.xml`, `robots.txt`) |
 | `[00000]` | licence number (Άδεια Ασκήσεως Επαγγέλματος) — footer legal block, both pages |
 | `[000000000]` | ΑΦΜ (required by Π.Δ. 131/2003 for regulated professions) |
 | `[09:00–20:00]` | the hours she actually answers the phone |
@@ -57,16 +56,19 @@ Settings → Pages → Source **Deploy from a branch**, branch `main`, folder
 a **public** repo. All asset paths are relative, so the site works both at
 `https://<user>.github.io/andromachi-karza/` and on a custom domain.
 
-### Custom domain
+### Custom domain — andromachikarza.com
 
-1. Buy the domain at any registrar. Don't buy their hosting — Pages serves it.
-2. At the registrar's DNS: four `A` records on the apex (`@`) →
+Registered at **Cloudflare Registrar** (DNS on Cloudflare). The apex is the
+primary address; `www` redirects to it. All URLs in both HTML files,
+`sitemap.xml` and `robots.txt` use `https://andromachikarza.com`.
+
+1. Cloudflare → DNS → Records, all set to **DNS only** (grey cloud — the
+   orange proxy blocks GitHub's HTTPS certificate): four `A` records on `@` →
    `185.199.108.153`, `185.199.109.153`, `185.199.110.153`,
    `185.199.111.153`; and `www` `CNAME` → `<user>.github.io`.
-3. Settings → Pages → Custom domain → enter it (this commits a `CNAME` file),
-   wait for the DNS check, then tick **Enforce HTTPS**.
-4. Replace `https://www.andromachikarza.gr` everywhere (both HTML files,
-   `sitemap.xml`, `robots.txt`) with the real domain.
+2. Settings → Pages → Custom domain = `andromachikarza.com` (the `CNAME`
+   file in the repo root holds the same value), then **Enforce HTTPS** once
+   the certificate is issued.
 
 Don't add the `CNAME` file before the DNS works — Pages would redirect the
 github.io address to a domain that doesn't resolve yet.
