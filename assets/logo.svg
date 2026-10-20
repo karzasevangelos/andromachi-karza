@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Ανδρομάχη Κάρζα — the mark. A Ψ (ψυχή) drawn as a sprouting plant:
+       the stem is the letter's spine, two leaves are its arms, a rose bud
+       on top. Detailed cut for 48px and up; favicon.svg is the small cut. -->
+  <path d="M34 3C50 4 62 14 61 31C60 48 49 61 31 60C14 60 3 48 4 31C5 15 17 2 34 3Z" fill="#2E7D63"/>
+  <path d="M32 55V23" stroke="#FAF6F3" stroke-width="6" stroke-linecap="round"/>
+  <path d="M32 44C21 43.5 13 35 13.5 20C25 21.5 31.5 30 32 44Z" fill="#FAF6F3"/>
+  <path d="M32 44C43 42.5 51 33 50.5 17.5C39 20 32.5 29.5 32 44Z" fill="#FAF6F3"/>
+  <path d="M31 41C26 36 20 29 16.5 23M33 40.5C38 35 44 28 47.5 21" stroke="#2E7D63" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+  <circle cx="32" cy="15" r="6" fill="#F3CBD6"/>
+</svg>

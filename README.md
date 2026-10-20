@@ -10,7 +10,8 @@ en/index.html       English mirror
 css/style.css       the whole design system
 js/main.js          animations, nav, form (no dependencies)
 fonts/              Commissioner, self-hosted, greek+latin subsets
-assets/             favicon, og image, icons
+assets/             logo + icons, og image (see "The mark" below)
+favicon.ico         16/32/48 px tab icon (Google search uses this or favicon.svg)
 _headers            security headers (CSP) + caching — used only if moved to Cloudflare Pages/Netlify
 .nojekyll           tells GitHub Pages to serve files as-is
 sitemap.xml robots.txt site.webmanifest
@@ -108,6 +109,25 @@ form `action` instead of the address.
   banner needed). GA4 would require a prior-consent banner in Greece.
 - No blog of AI-generated posts — this is YMYL health content; Google's
   quality raters flag it. Hand-written articles with her byline only.
+
+## The mark
+
+A Ψ (ψυχή) drawn as a sprouting plant — the stem is the letter's spine, two
+leaves are its arms, a rose bud on top — inside the site's organic blob, in
+`--teal` (#2E7D63), paper (#FAF6F3) and rose (#F3CBD6).
+
+| File | Use |
+|---|---|
+| `assets/logo.svg` | master, detailed cut (leaf veins) — footer, 48px and up |
+| `assets/favicon.svg` | small cut (no veins) — browser tab, header |
+| `favicon.ico` | 16/32/48 px bitmaps of the small cut |
+| `assets/icon-192.png`, `icon-512.png` | manifest + JSON-LD `logo` (transparent) |
+| `assets/icon-maskable-512.png` | Android adaptive icon (full-bleed teal, mark in the safe zone) |
+| `assets/apple-touch-icon.png` | iOS home screen, 180 px, full-bleed |
+
+The PNGs/ICO were rendered from the SVGs with headless Chrome. If the mark
+changes, re-render all of them so the tab, the search result and the home
+screen stay identical.
 
 ## Design system notes (for future edits)
 

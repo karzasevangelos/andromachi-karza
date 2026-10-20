@@ -246,7 +246,12 @@ a:hover { color: var(--teal-deep); text-decoration-color: currentColor; }
   border-radius: 60% 40% 55% 45% / 55% 50% 50% 45%;
   transition: transform .4s var(--ease), background .4s var(--ease);
 }
-.hdr__name:hover .hdr__dot { transform: rotate(40deg) scale(1.15); background: var(--coral); }
+/* the mark — a Ψ that grows like a sprout (assets/logo.svg) */
+.hdr__logo {
+  width: 2rem; height: 2rem; flex: none;
+  transition: transform .4s var(--ease);
+}
+.hdr__name:hover .hdr__logo { transform: rotate(-8deg) scale(1.06); }
 
 .nav { display: none; gap: var(--s2); align-items: center; }
 @media (min-width: 940px) { .nav { display: flex; } }
@@ -1191,6 +1196,7 @@ html.js .rv-kids.in > .step .step__n {
 }
 
 .ftr__grid { text-align: center; display: grid; gap: var(--s5); justify-items: center; }
+.ftr__logo { width: 3.5rem; height: 3.5rem; margin-bottom: calc(-1 * var(--s3)); }
 .ftr__name { font-weight: 560; font-variation-settings: var(--display); color: #fff; font-size: 1.375rem; }
 .ftr a { color: #D8E2DC; min-height: 24px; display: inline-flex; align-items: center; }
 .ftr a:hover { color: #fff; }
