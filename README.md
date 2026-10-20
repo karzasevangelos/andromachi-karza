@@ -113,8 +113,10 @@ form `action` instead of the address.
 ## The mark
 
 A Ψ (ψυχή) drawn as a sprouting plant — the stem is the letter's spine, two
-leaves are its arms, a rose bud on top — inside the site's organic blob, in
-`--teal` (#2E7D63), paper (#FAF6F3) and rose (#F3CBD6).
+oval leaves are its arms, a shiny rose bud on top — drawn like the plant in
+the hero illustration, inside the site's organic blob. Colours are the
+site's: mint blob (#CDE7D8), rose ring (#E9A3B8), two-tone leaves (#2E7D63 /
+#57997F), deep-green stem (#1E5B46), rose bud (#D98AA3).
 
 | File | Use |
 |---|---|
@@ -122,7 +124,7 @@ leaves are its arms, a rose bud on top — inside the site's organic blob, in
 | `assets/favicon.svg` | small cut (no veins) — browser tab, header |
 | `favicon.ico` | 16/32/48 px bitmaps of the small cut |
 | `assets/icon-192.png`, `icon-512.png` | manifest + JSON-LD `logo` (transparent) |
-| `assets/icon-maskable-512.png` | Android adaptive icon (full-bleed teal, mark in the safe zone) |
+| `assets/icon-maskable-512.png` | Android adaptive icon (full-bleed mint, sprout in the safe zone) |
 | `assets/apple-touch-icon.png` | iOS home screen, 180 px, full-bleed |
 
 The PNGs/ICO were rendered from the SVGs with headless Chrome. If the mark
